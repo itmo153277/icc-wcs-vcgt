@@ -103,8 +103,8 @@ def extract_calib_data(cdmp_data: bytes) -> dict:
         if calib_tag is None:
             calib_tag = {}
         else:
-            assert set(calib_tag.attrib.keys()).difference(
-                ["Gamma", "Gain", "Offset"])
+            assert len(set(calib_tag.attrib.keys()).difference(
+                ["Gamma", "Gain", "Offset1"])) == 0
         calib_data[i] = tuple(
             float(calib_tag.get(x, d))
             for x, d in [("Gamma", 1), ("Offset1", 0), ("Gain", 1)]
